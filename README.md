@@ -57,12 +57,11 @@ Security is built into every layer of Shiro:
 
 We rely on a few trusted partners:
 
-- **Google Cloud Firestore** — for encrypted cloud data storage.
+- **Cloud Firestore** — for encrypted cloud data storage.
 - **OpenAI & Anthropic** — to power Shiro’s reflection features. Data sent to these models is **anonymized** and **not stored** by them.
 - **Mixpanel / Sentry / LogRocket** — for app analytics and performance monitoring. Sensitive data is filtered out before sending.
 - **Apple / Google / Meta advertising pixels** (optional) — used only to measure campaign reach, never tied to your personal journal data.
 
-Each partner complies with modern privacy frameworks such as **GDPR**, **CCPA**, and **PDPA**.
 
 ### **6. Data Retention & Deletion**
 

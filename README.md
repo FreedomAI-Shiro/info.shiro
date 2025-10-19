@@ -1,3 +1,5 @@
+![ff84a95d9f3248de2548bc8e2a902eba](https://github.com/user-attachments/assets/3ed35235-1b78-4fd5-80c4-af96f017ea3a)
+
 # **Shiro Privacy Policy**
 
 ### **A gentle note before we begin**

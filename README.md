@@ -1,3 +1,39 @@
+# **About us**
+Journaling is one of the oldest human rituals.
+Long before algorithms and endless feeds, people wrote —
+to see themselves more clearly,
+to listen inwardly,
+to stay kindly beside themselves.
+
+But in the modern world, we are drowning in noise.
+We scroll more than we breathe,
+and rarely pause long enough
+to ask ourselves how we really feel.
+
+Shiro was born to bring that pause back —
+to make reflection feel alive again.
+
+We use the latest AI not to replace your thoughts,
+but to walk beside them —
+to listen, to understand, to remind you
+that your story matters.
+
+Through words, images, and voice,
+Shiro helps you be seen — even by yourself.
+It lowers the barrier to self-connection,
+and turns journaling into a gentle dialogue
+between who you are and who you’re becoming.
+
+Because when you begin to write,
+something shifts quietly inside you.
+Not stronger, but softer.
+Not louder, but more at peace.
+
+Your rhythm will draw the right things to you.
+And your life — slowly, deeply — will begin to change.
+
+Shiro — write, reflect, and come home to yourself.
+
 # **Shiro Privacy Policy**
 
 ### **A gentle note before we begin**

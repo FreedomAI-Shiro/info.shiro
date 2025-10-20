@@ -1,4 +1,6 @@
-# **About us**
+# **About US**
+Write, reflect, and come home to yourself.
+
 Journaling is one of the oldest human rituals.
 Long before algorithms and endless feeds, people wrote —
 to see themselves more clearly,
@@ -32,7 +34,10 @@ Not louder, but more at peace.
 Your rhythm will draw the right things to you.
 And your life — slowly, deeply — will begin to change.
 
-Shiro — write, reflect, and come home to yourself.
+⸻
+
+Shiro — a space to remember who you already are.
+
 
 # **Shiro Privacy Policy**
 

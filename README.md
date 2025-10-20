@@ -1,4 +1,7 @@
 # **About US**
+
+## **Shiro**
+
 Write, reflect, and come home to yourself.
 
 Journaling is one of the oldest human rituals.
@@ -14,6 +17,13 @@ to ask ourselves how we really feel.
 
 Shiro was born to bring that pause back —
 to make reflection feel alive again.
+
+In Japanese, “Shiro” means white —
+a symbol of space, clarity, and quiet.
+We hope to offer everyone a clean, open canvas
+to record themselves freely —
+without judgment, without noise,
+just the gentle truth of being.
 
 We use the latest AI not to replace your thoughts,
 but to walk beside them —
@@ -36,7 +46,8 @@ And your life — slowly, deeply — will begin to change.
 
 ⸻
 
-Shiro — a space to remember who you already are.
+Shiro — a white space for your inner world to unfold.
+
 
 # Shiro App
 

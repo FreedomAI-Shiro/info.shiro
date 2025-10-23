@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Shiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, 
+                #e0f7fa 0%, 
+                #f3e5f5 15%, 
+                #fff9c4 30%, 
+                #ffccbc 45%, 
+                #f8bbd0 60%, 
+                #e1bee7 75%, 
+                #b2ebf2 90%, 
+                #c5e1a5 100%
+            );
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-link.active {
+            color: #00bcd4;
+        }
+        
+        .nav-link:hover {
+            color: #00bcd4;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .social-icon:hover {
+            background-color: #333;
+            color: white;
+        }
+        
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 32px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .app-store-btn:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .app-store-btn i {
+            font-size: 28px;
+        }
+        
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+        }
+        
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="logo-container">
+                    <img src="logo.jpg" alt="Shiro Logo" class="logo-img">
+                    <span class="logo-text">Shiro</span>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-12">
+                    <a href="#features" class="nav-link text-gray-700">Features</a>
+                    <a href="#about" class="nav-link active text-gray-700">About Us</a>
+                    <a href="#pricing" class="nav-link text-gray-700">Pricing</a>
+                </div>
+                
+                <!-- Social Icons -->
+                <div class="flex items-center gap-4">
+                    <span class="text-gray-700 font-medium mr-2">Follow Us</span>
+                    <div class="social-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="social-icon">
+                        <i class="fab fa-x-twitter"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto text-center hero-content">
+            <!-- Main Heading -->
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-normal text-gray-900 mb-8 leading-tight">
+                Simply write. Always remember.
+            </h1>
+            
+            <!-- Subheading -->
+            <h2 class="text-2xl md:text-3xl font-medium text-gray-800 mb-6">
+                AI Journal Companion
+            </h2>
+            
+            <!-- Description -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <p class="text-gray-700 text-lg mb-2">
+                    We keep Shiro simple on purpose.
+                </p>
+                <p class="text-gray-700 text-lg">
+                    No heavy tools, no clutter — just a space to write, reflect, and be truly seen.
+                </p>
+            </div>
+            
+            <!-- App Store Button -->
+            <div class="flex justify-center">
+                <a href="#" class="app-store-btn">
+                    <i class="fab fa-apple"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Download on the</div>
+                        <div class="text-lg font-bold">App Store</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="gradient-bg py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Story Section -->
+            <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg p-12 mb-12">
+                <h3 class="text-3xl font-semibold text-gray-900 mb-6">Our Story</h3>
+                <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+                    <p>
+                        Journaling is one of the oldest human rituals. Long before algorithms and endless feeds, people wrote — to see themselves more clearly, to listen inwardly, to stay kindly beside themselves.
+                    </p>
+                    <p>
+                        But in the modern world, we are drowning in noise. We scroll more than we breathe, and rarely pause long enough to ask ourselves how we really feel.
+                    </p>
+                    <p class="font-medium">
+                        Shiro was born to bring that pause back — to make reflection feel alive again.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Meaning Section -->
+            <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg p-12 mb-12">
+                <h3 class="text-3xl font-semibold text-gray-900 mb-6">What Shiro Means</h3>
+                <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+                    <p>
+                        In Japanese, "Shiro" means <span class="font-semibold">white</span> — a symbol of space, clarity, and quiet. We hope to offer everyone a clean, open canvas to record themselves freely — without judgment, without noise, just the gentle truth of being.
+                    </p>
+                    <p>
+                        We use the latest AI not to replace your thoughts, but to walk beside them — to listen, to understand, to remind you that your story matters.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision Section -->
+            <div class="bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg p-12 mb-12">
+                <h3 class="text-3xl font-semibold text-gray-900 mb-6">Our Vision</h3>
+                <div class="space-y-6 text-gray-700 text-lg leading-relaxed">
+                    <p>
+                        Through words, images, and voice, Shiro helps you be seen — even by yourself. It lowers the barrier to self-connection, and turns journaling into a gentle dialogue between who you are and who you're becoming.
+                    </p>
+                    <p>
+                        Because when you begin to write, something shifts quietly inside you. Not stronger, but softer. Not louder, but more at peace.
+                    </p>
+                    <p class="text-xl font-semibold text-gray-900">
+                        Your rhythm will draw the right things to you. And your life — slowly, deeply — will begin to change.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all">
+                    <div class="text-5xl mb-4">✍️</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Write</h4>
+                    <p class="text-gray-600">Express yourself through words</p>
+                </div>
+
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all">
+                    <div class="text-5xl mb-4">🖼️</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Images</h4>
+                    <p class="text-gray-600">Capture moments visually</p>
+                </div>
+
+                <div class="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all">
+                    <div class="text-5xl mb-4">🎤</div>
+                    <h4 class="text-xl font-semibold text-gray-900 mb-2">Voice</h4>
+                    <p class="text-gray-600">Speak your thoughts freely</p>
+                </div>
+            </div>
+
+            <!-- Closing Statement -->
+            <div class="text-center py-12">
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-8"></div>
+                <p class="text-3xl font-light text-gray-800 italic mb-2">
+                    Shiro
+                </p>
+                <p class="text-xl text-gray-700">
+                    A white space for your inner world to unfold.
+                </p>
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/70 backdrop-blur-md py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="logo-container mb-4">
+                        <img src="logo.jpg" alt="Shiro Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-xl font-bold text-gray-900">Shiro</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">A white space for your inner world to unfold.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Product</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Features</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Pricing</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Company</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Blog</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Legal</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-300 pt-8 text-center text-sm text-gray-600">
+                <p>&copy; 2025 Shiro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

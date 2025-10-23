@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiro - AI Journal Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        .gradient-bg {
+            background: url('backImg.png') center center / cover no-repeat fixed;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        @keyframes gradientShift {
+            0% { 
+                background-position: 0% 50%;
+                filter: hue-rotate(0deg);
+            }
+            25% {
+                background-position: 50% 100%;
+                filter: hue-rotate(5deg);
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: hue-rotate(0deg);
+            }
+            75% {
+                background-position: 50% 0%;
+                filter: hue-rotate(-5deg);
+            }
+            100% { 
+                background-position: 0% 50%;
+                filter: hue-rotate(0deg);
+            }
+        }
+        
+        /* Enhanced Navigation */
+        nav {
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00bcd4, #667eea);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: #00bcd4;
+            transform: translateY(-2px);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-icon:hover {
+            background-color: #333;
+            color: white;
+            transform: rotate(360deg) scale(1.1);
+        }
+        
+        /* Scroll Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+        
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* Pricing Cards */
+        .pricing-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid #4db8a8;
+            box-shadow: 0 10px 30px rgba(77, 184, 168, 0.3);
+        }
+        
+        .save-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: #4db8a8;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            background: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #000;
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* About Section Images */
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .about-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+        }
+        
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 32px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .app-store-btn:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-8 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" class="logo-container">
+                    <img src="logo.jpg" alt="Shiro Logo" class="logo-img">
+                    <span class="logo-text">Shiro</span>
+                </a>
+                
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center gap-12">
+                    <a href="#features" class="nav-link text-gray-700">Features</a>
+                    <a href="#about" class="nav-link text-gray-700">About Us</a>
+                    <a href="#pricing" class="nav-link text-gray-700">Pricing</a>
+                </div>
+                
+                <!-- Social Icons -->
+                <div class="flex items-center gap-4">
+                    <span class="text-gray-700 font-medium mr-2">Follow Us</span>
+                    <a href="https://www.tiktok.com/@shiro_aijournal?_r=1&_d=eime5ba4e9h7jl&sec_uid=MS4wLjABAAAAAkcFE_CoWMkJ_sZtP9ihLjAtt07vO1J7W-Dw10lFaYNjfCIIK4EwsgyoH_BsQcOE&share_author_id=7483210272115573815&sharer_language=en&source=h5_m&u_code=ejaj4bld77c2ma&item_author_type=1&utm_source=copy&tt_from=copy&enable_checksum=1&utm_medium=ios&share_link_id=C952B25C-E3CA-459C-9CA1-7AAADA8360B4&user_id=7483210272115573815&sec_user_id=MS4wLjABAAAAAkcFE_CoWMkJ_sZtP9ihLjAtt07vO1J7W-Dw10lFaYNjfCIIK4EwsgyoH_BsQcOE&social_share_type=4&ug_btm=b8727,b0&utm_campaign=client_share&share_app_id=1233" target="_blank" class="social-icon">
+                        <svg width="15" height="17" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.8207 1.10865L10.4298 0.5H8.06419V5.98185L8.05613 11.3364C8.06016 11.3762 8.06419 11.4199 8.06419 11.4597C8.06419 12.8003 6.95999 13.8943 5.59787 13.8943C4.23575 13.8943 3.13155 12.8043 3.13155 11.4597C3.13155 10.1191 4.23575 9.02511 5.59787 9.02511C5.87997 9.02511 6.154 9.07683 6.40789 9.16435V6.49105C6.14594 6.44729 5.87594 6.42342 5.59787 6.42342C2.789 6.4274 0.5 8.68697 0.5 11.4637C0.5 14.2404 2.789 16.5 5.6019 16.5C8.4148 16.5 10.7038 14.2404 10.7038 11.4637V5.09473C11.7234 6.10119 13.0412 7.08379 14.5 7.39806V4.66509C12.9162 3.9729 11.3405 1.92815 10.8207 1.10865Z" stroke="black"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon">
+                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M5.67227 0H0L6.72535 7.61335L0.430223 14H3.33876L8.09997 9.16958L12.3277 13.9556H18L11.0793 6.12103L11.0915 6.13454L17.0504 0.0889382H14.1418L9.71667 4.57849L5.67227 0ZM3.131 1.33334H4.89685L14.869 12.6222H13.1032L3.131 1.33334Z" fill="black"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg px-6 min-h-screen flex items-center">
+        <div class="max-w-5xl mx-auto text-center w-full">
+            <div class="fade-in-up">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-normal text-gray-900 mb-8 leading-tight whitespace-nowrap">
+                    Simply write. Always remember.
+                </h1>
+            </div>
+            
+            <div class="fade-in-up" style="transition-delay: 0.2s;">
+                <h2 class="text-2xl md:text-3xl font-medium text-gray-800 mb-6">
+                    AI Journal Companion
+                </h2>
+            </div>
+            
+            <div class="fade-in-up max-w-2xl mx-auto mb-12" style="transition-delay: 0.4s;">
+                <p class="text-gray-700 text-lg mb-2">
+                    We keep Shiro simple on purpose.
+                </p>
+                <p class="text-gray-700 text-lg">
+                    No heavy tools, no clutter — just a space to write, reflect, and be truly seen.
+                </p>
+            </div>
+            
+            <div class="fade-in-up flex justify-center" style="transition-delay: 0.6s;">
+                <a href="#" target="_blank">
+                    <img src="appStore.png" alt="Download on App Store" class="rounded-lg" style="width: 150px; height: 52px;">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="gradient-bg py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <!-- Feature 1: Voice, Text, and Image -->
+            <div class="mb-32 fade-in-up">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="./features/image11.png" alt="Voice Text and Image 1" class="rounded-2xl shadow-2xl" style="width: 222px; height: 500px; object-fit: cover;">
+                            <img src="./features/image12.png" alt="Voice Text and Image 2" class="rounded-2xl shadow-2xl" style="width: 222px; height: 500px; object-fit: cover;">
+                            <img src="./features/image13.png" alt="Voice Text and Image 3" class="rounded-2xl shadow-2xl" style="width: 222px; height: 500px; object-fit: cover;">
+                            <img src="./features/image14.png" alt="Voice Text and Image 4" class="rounded-2xl shadow-2xl" style="width: 222px; height: 500px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-6">Voice, Text, and Image — All in One Place</h3>
+                        <div class="space-y-5 text-gray-600 text-base leading-relaxed">
+                            <p>
+                                With Shiro, you can record your thoughts in the way that feels most natural.
+                            </p>
+                            <p>
+                                Speak, type, or share an image — Shiro listens and understands.
+                            </p>
+                            <p>
+                                Voice notes are automatically transcribed, so you can hear yourself think or read your reflections later.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Connected and Effortless -->
+            <div class="mb-32 fade-in-up">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-6">Connected and Effortless</h3>
+                        <div class="space-y-5 text-gray-600 text-base leading-relaxed">
+                            <p>
+                                Shiro connects seamlessly with Discord and Telegram.
+                            </p>
+                            <p>
+                                Once linked, you can message Shiro directly from those apps — every note, every thought, every moment — safely stored and organized in one place.
+                            </p>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="./features/image 2.png" alt="Connected and Effortless" class="rounded-2xl shadow-2xl" style="width: 222px; height: 500px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3: Designed for Simplicity -->
+            <div class="mb-16 fade-in-up">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <img src="./features/image3.png" alt="Designed for Simplicity" class="rounded-2xl shadow-2xl" style="width: 222px; height: 500px; object-fit: cover;">
+                    </div>
+                    <div class="order-1 md:order-2">
+                        <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-6">Designed for Simplicity</h3>
+                        <div class="space-y-5 text-gray-600 text-base leading-relaxed">
+                            <p>
+                                We built Shiro with one clear intention:
+                            </p>
+                            <p>
+                                to make journaling and reflection simpler, not more complicated.
+                            </p>
+                            <p>
+                                No heavy tools. No clutter. Just a quiet space to write, speak, and be understood.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section id="about" class="gradient-bg py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center text-gray-900 mb-16 fade-in-up">About Us</h2>
+            
+            <!-- Story Section -->
+            <div class="max-w-3xl mx-auto mb-20 fade-in-up">
+                <h3 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-8 text-center">Shiro</h3>
+                <div class="space-y-6 text-gray-600 text-base leading-relaxed">
+                    <p class="text-center italic text-gray-700">Write, reflect, and come home to yourself.</p>
+                    
+                    <p>Journaling is one of the oldest human rituals. Long before algorithms and endless feeds, people wrote — to see themselves more clearly, to listen inwardly, to stay kindly beside themselves.</p>
+                    
+                    <p>But in the modern world, we are drowning in noise. We scroll more than we breathe, and rarely pause long enough to ask ourselves how we really feel.</p>
+                    
+                    <p>Shiro was born to bring that pause back — to make reflection feel alive again.</p>
+                    
+                    <p>In Japanese, "Shiro" means white — a symbol of space, clarity, and quiet. We hope to offer everyone a clean, open canvas to record themselves freely — without judgment, without noise, just the gentle truth of being.</p>
+                    
+                    <p>We use the latest AI not to replace your thoughts, but to walk beside them — to listen, to understand, to remind you that your story matters.</p>
+                    
+                    <p>Through words, images, and voice, Shiro helps you be seen — even by yourself. It lowers the barrier to self-connection, and turns journaling into a gentle dialogue between who you are and who you're becoming.</p>
+                    
+                    <p>Because when you begin to write, something shifts quietly inside you. Not stronger, but softer. Not louder, but more at peace.</p>
+                    
+                    <p>Your rhythm will draw the right things to you. And your life — slowly, deeply — will begin to change.</p>
+                </div>
+            </div>
+
+            <!-- Closing Statement -->
+            <div class="text-center py-12 fade-in-up">
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mb-8"></div>
+                <p class="text-2xl font-light text-gray-800 mb-2">
+                    Shiro
+                </p>
+                <p class="text-lg text-gray-600">
+                    A white space for your inner world to unfold.
+                </p>
+                <div class="h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent mt-8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="gradient-bg py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">An affordable path to a better you</h2>
+                <p class="text-xl text-gray-700">Shiro is free to use. When you're ready to make the full commitment to your personal growth, Shiro Pro is the way to go.</p>
+            </div>
+            
+            <!-- Horizontal Pricing Cards -->
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-8">
+                <!-- Monthly Plan -->
+                <div class="pricing-card bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl scale-in flex flex-col">
+                    <div class="text-center mb-6">
+                        <div class="text-gray-600 text-lg mb-2">Monthly</div>
+                        <div class="text-5xl font-bold text-gray-900 mb-2">
+                            $9.9<span class="text-2xl font-normal text-gray-600">/month</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">Advanced AI Feedback</div>
+                                <div class="text-sm text-gray-600">Deeper, personalized insights on your thoughts.</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">Long-term Memory Chats</div>
+                                <div class="text-sm text-gray-600">Shiro remembers everything you share.</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">Voice-to-Text Transcription</div>
+                                <div class="text-sm text-gray-600">Effortlessly turn your voice into entries.</div>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <button class="cta-button w-full text-white py-4 rounded-full text-lg font-semibold mt-auto">
+                        Start
+                    </button>
+                </div>
+                
+                <!-- Annual Plan (Featured) -->
+                <div class="pricing-card featured bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-xl scale-in flex flex-col" style="transition-delay: 0.2s;">
+                    <div class="save-badge">Save 20% off</div>
+                    
+                    <div class="text-center mb-6">
+                        <div class="text-gray-600 text-lg mb-2">Annual</div>
+                        <div class="text-5xl font-bold text-gray-900 mb-2">
+                            $95<span class="text-2xl font-normal text-gray-600">/year</span>
+                        </div>
+                    </div>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">Advanced AI Feedback</div>
+                                <div class="text-sm text-gray-600">Deeper, personalized insights on your thoughts.</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">Long-term Memory Chats</div>
+                                <div class="text-sm text-gray-600">Shiro remembers everything you share.</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">Voice-to-Text Transcription</div>
+                                <div class="text-sm text-gray-600">Effortlessly turn your voice into entries.</div>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-xl">✨</span>
+                            <div>
+                                <div class="font-semibold text-gray-900">20% Off Annual Plan</div>
+                                <div class="text-sm text-gray-600">Commit yearly and save more.</div>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <button class="cta-button w-full text-white py-4 rounded-full text-lg font-semibold mt-auto">
+                        Start
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Terms Links -->
+            <div class="text-center text-sm text-gray-600 fade-in-up">
+                <a href="terms.html" class="hover:text-gray-900 underline">Terms of Service</a>
+                <span class="mx-2">·</span>
+                <a href="privacy.html" class="hover:text-gray-900 underline">Privacy Policy</a>
+                <div class="mt-2">
+                    <a href="#" class="hover:text-gray-900 underline">Student and disability discounts available</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white/70 backdrop-blur-md py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="logo-container mb-4">
+                        <img src="logo.jpg" alt="Shiro Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-xl font-bold text-gray-900">Shiro</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">A white space for your inner world to unfold.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Product</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#features" class="hover:text-gray-900 transition-colors">Features</a></li>
+                        <li><a href="#pricing" class="hover:text-gray-900 transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-gray-900 transition-colors">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Company</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#about" class="hover:text-gray-900 transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900 transition-colors">Blog</a></li>
+                        <li><a href="#" class="hover:text-gray-900 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Legal</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="privacy.html" class="hover:text-gray-900 transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-gray-900 transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-300 pt-8 text-center text-sm text-gray-600">
+                <p>&copy; 2025 Shiro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initial animation for hero section
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

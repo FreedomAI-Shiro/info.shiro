@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Shiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+            min-height: 100vh;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+        }
+        
+        .quote-mark {
+            font-size: 4rem;
+            line-height: 0;
+            color: #667eea;
+            opacity: 0.3;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <img src="logo.jpg" alt="Shiro Logo" class="w-10 h-10 rounded-lg">
+                    <span class="text-2xl font-bold text-gray-900">Shiro</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="nav-link text-gray-600 hover:text-gray-900">首页</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-gray-900">关于我们</a>
+                    <a href="#features" class="nav-link text-gray-600 hover:text-gray-900">功能</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-gray-900">联系我们</a>
+                    <button class="px-6 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white rounded-full hover:shadow-lg transition-all">
+                        开始使用
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto text-center">
+            <div class="fade-in stagger-1">
+                <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    About <span class="text-gradient">Shiro</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Write, reflect, and come home to yourself.
+                </p>
+            </div>
+            
+            <div class="fade-in stagger-2 floating">
+                <div class="w-40 h-40 mx-auto bg-white rounded-3xl shadow-2xl flex items-center justify-center p-4">
+                    <img src="logo.jpg" alt="Shiro Logo" class="w-full h-full object-contain rounded-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <!-- Story Section -->
+            <div class="bg-white rounded-3xl shadow-xl p-12 mb-12 fade-in stagger-3">
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                        Journaling is one of the oldest human rituals. Long before algorithms and endless feeds, people wrote — to see themselves more clearly, to listen inwardly, to stay kindly beside themselves.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                        But in the modern world, we are drowning in noise. We scroll more than we breathe, and rarely pause long enough to ask ourselves how we really feel.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed text-lg font-medium">
+                        Shiro was born to bring that pause back — to make reflection feel alive again.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Meaning Section -->
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-3xl p-10 card-hover fade-in stagger-4">
+                    <div class="text-5xl mb-4">🤍</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">The Meaning</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        In Japanese, "Shiro" means white — a symbol of space, clarity, and quiet. We hope to offer everyone a clean, open canvas to record themselves freely — without judgment, without noise, just the gentle truth of being.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-10 card-hover fade-in stagger-4">
+                    <div class="text-5xl mb-4">🤖</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">AI Companion</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        We use the latest AI not to replace your thoughts, but to walk beside them — to listen, to understand, to remind you that your story matters.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Vision Section -->
+            <div class="bg-white rounded-3xl shadow-xl p-12 mb-12 fade-in">
+                <div class="relative">
+                    <span class="quote-mark absolute -top-6 -left-4">"</span>
+                    <div class="pl-8">
+                        <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                            Through words, images, and voice, Shiro helps you be seen — even by yourself. It lowers the barrier to self-connection, and turns journaling into a gentle dialogue between who you are and who you're becoming.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                            Because when you begin to write, something shifts quietly inside you. Not stronger, but softer. Not louder, but more at peace.
+                        </p>
+                        <p class="text-gray-900 leading-relaxed text-xl font-semibold">
+                            Your rhythm will draw the right things to you. And your life — slowly, deeply — will begin to change.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div id="features" class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-2xl p-8 text-center card-hover fade-in">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-2xl flex items-center justify-center">
+                        <span class="text-3xl">✍️</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Write</h4>
+                    <p class="text-gray-600 text-sm">Express yourself through words</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 text-center card-hover fade-in">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl flex items-center justify-center">
+                        <span class="text-3xl">🖼️</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Images</h4>
+                    <p class="text-gray-600 text-sm">Capture moments visually</p>
+                </div>
+
+                <div class="bg-white rounded-2xl p-8 text-center card-hover fade-in">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-2xl flex items-center justify-center">
+                        <span class="text-3xl">🎤</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Voice</h4>
+                    <p class="text-gray-600 text-sm">Speak your thoughts freely</p>
+                </div>
+            </div>
+
+            <!-- Closing Statement -->
+            <div class="text-center py-16 fade-in">
+                <div class="section-divider mb-12"></div>
+                <p class="text-2xl md:text-3xl font-light text-gray-800 mb-4 italic">
+                    Shiro — a white space for your inner world to unfold.
+                </p>
+                <div class="section-divider mt-12"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="hero-gradient rounded-3xl p-12 text-center text-white shadow-2xl">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready to Begin?</h2>
+                <p class="text-xl mb-8 opacity-90">Start your journey of self-reflection today.</p>
+                <button class="px-10 py-4 bg-white text-purple-600 rounded-full font-semibold text-lg hover:shadow-xl transition-all hover:scale-105">
+                    Start Free Trial
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-12 px-6 bg-white border-t border-gray-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="logo.jpg" alt="Shiro Logo" class="w-10 h-10 rounded-lg">
+                        <span class="text-xl font-bold text-gray-900">Shiro</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">A white space for your inner world to unfold.</p>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Product</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Features</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Pricing</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Company</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">About Us</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Blog</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="font-semibold text-gray-900 mb-4">Legal</h5>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a href="#" class="hover:text-gray-900">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-900">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-8 text-center text-sm text-gray-600">
+                <p>&copy; 2025 Shiro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
